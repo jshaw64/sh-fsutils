@@ -25,3 +25,11 @@ fs_is_valid_dir()
   return 0
 }
 
+fs_parse_file_from_path()
+{
+  local path="$1"
+  local file=${path##*/}
+  
+  echo "$file"
+}
+
