@@ -29,15 +29,23 @@ fs_parse_file_from_path()
 {
   local path="$1"
   local file=${path##*/}
-  
+
   echo "$file"
 }
 
 fs_parse_path_no_file()
 {
   local path="$1"
-  local path_no_file=${path%/*}
-  
+  local file=${path##*/}
+  local extension=${file##*.}
+  local path_no_file=
+
+  if [ "$extension" = "$file" ]; then
+    path_no_file="$path"
+  else
+    path_no_file=${path%/*}
+  fi
+
   echo "$path_no_file"
 }
 
