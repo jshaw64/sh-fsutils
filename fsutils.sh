@@ -33,3 +33,10 @@ fs_parse_file_from_path()
   echo "$file"
 }
 
+fs_parse_path_no_file()
+{
+  local path="$1"
+  local path_no_file=${path%/*}
+  
+  echo "$path_no_file"
+}
