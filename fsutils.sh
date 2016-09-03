@@ -40,3 +40,21 @@ fs_parse_path_no_file()
   
   echo "$path_no_file"
 }
+
+
+fs_get_files_for_filter()
+{
+  local files=()
+  local filter="$@"
+
+  for file in $filter; do
+    if [ "$file" = "$filter" ]; then
+      break
+    fi
+    file_no_dir=${file##*/}
+    files=( "${files[@]}" "$file_no_dir" )
+  done
+
+  echo "${files[@]}"
+}
+
