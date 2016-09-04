@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DEF_TMP_NAME="fs-tmp"
+
 E_FILE_EXIST=50
 E_DIR_EXIST=51
 
@@ -23,6 +25,17 @@ fs_is_valid_dir()
   fi
 
   return 0
+}
+
+fs_create_tmp_dir()
+{
+  local tmp_dir=$( mktemp -d 2>/dev/null || mktemp -d -t "$DEF_TMP_NAME"$$ )
+
+  if [ ! -d "$tmp_dir" ]; then
+    return $E_TMP_DIR
+  fi
+
+  echo "$tmp_dir"
 }
 
 fs_copy_file()
