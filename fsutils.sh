@@ -102,6 +102,28 @@ fs_rm_dir()
   return 0
 }
 
+fs_rm_dir_contents()
+{
+  local dir="$1"
+
+  if [ ! -d "$dir" ]; then
+    return $E_RM_DIR
+  fi
+
+  rm -r "${dir}"/*
+
+  local found=
+  for file in "${dir}"/*; do
+    found="$file"
+  done
+
+  if [ -n "$found" ]; then
+    return $E_RM_FAIL
+  fi
+
+  return 0
+}
+
 fs_parse_file_from_path()
 {
   local path="$1"
