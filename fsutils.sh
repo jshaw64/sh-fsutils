@@ -159,6 +159,19 @@ fs_zip_dir()
   return 0
 }
 
+fs_unzip()
+{
+  local dir_src="$1"
+  local file_src="$2"
+  local path_src="${dir_src}/${file_src}"
+  local dir_dst="$3"
+
+  unzip "$path_src" -d "$dir_dst" > /dev/null
+
+  return $?
+}
+
+
 
 fs_parse_file_from_path()
 {
