@@ -85,6 +85,23 @@ fs_rm_file()
   return 0
 }
 
+fs_rm_dir()
+{
+  local dir="$1"
+
+  if [ ! -d "$dir" ]; then
+    return $E_RM_DIR
+  fi
+
+  rm -r "$dir"
+
+  if [ -d "$dir" ]; then
+    return $E_RM_DIR
+  fi
+
+  return 0
+}
+
 fs_parse_file_from_path()
 {
   local path="$1"
