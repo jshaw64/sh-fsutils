@@ -25,6 +25,29 @@ fs_is_valid_dir()
   return 0
 }
 
+fs_copy_file()
+{
+  local dir_src="$1"
+  local dir_dst="$2"
+  local file_src="$3"
+  local file_dst="$4"
+
+  local path_src="${dir_src}/${file_src}"
+  local path_dst="${dir_dst}/${file_dst}"
+
+  if [ ! -e "$path_src" ]; then
+    return $E_COPY_SRC
+  fi
+
+  cp "$path_src" "$path_dst"
+
+  if [ ! -e "$path_dst" ]; then
+    return $E_COPY_DST
+  fi
+
+  echo "$path_dst"
+}
+
 fs_parse_file_from_path()
 {
   local path="$1"
