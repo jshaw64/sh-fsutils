@@ -137,6 +137,29 @@ fs_rm_dir_contents()
   return 0
 }
 
+fs_zip_dir()
+{
+  local dir_src="$1"
+  local dir_dst="$2"
+  local file_dst="$3"
+  local file_out_path="${dir_dst}/${file_dst}"
+
+  if [ ! -d "$dir_src" ]; then
+    return $E_ZIP_SRC
+  fi
+
+  cd "$dir_src"
+  zip -qr "$file_dst" "."
+  cp "$file_dst" "$file_out_path"
+
+  if [ ! -e "$file_out_path" ]; then
+    return $E_ZIP_DST
+  fi
+
+  return 0
+}
+
+
 fs_parse_file_from_path()
 {
   local path="$1"
