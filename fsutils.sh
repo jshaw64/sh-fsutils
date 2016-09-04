@@ -66,6 +66,25 @@ fs_copy_dir()
   echo "$dir_dst"
 }
 
+fs_rm_file()
+{
+  local dir="$1"
+  local file="$2"
+  local path="${dir}/${file}"
+
+  if [ ! -e "$path" ]; then
+    return $E_RM_SRC
+  fi
+
+  rm -r "$path"
+
+  if [ -e "$path" ]; then
+    return $E_RM
+  fi
+
+  return 0
+}
+
 fs_parse_file_from_path()
 {
   local path="$1"
