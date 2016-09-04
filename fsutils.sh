@@ -48,6 +48,24 @@ fs_copy_file()
   echo "$path_dst"
 }
 
+fs_copy_dir()
+{
+  local dir_src="$1"
+  local dir_dst="$2"
+
+  if [ ! -d "$dir_src" ]; then
+    return $E_COPY_SRC
+  fi
+
+  cp -r "$dir_src" "$dir_dst"
+
+  if [ ! -d "$dir_dst" ]; then
+    return $E_COPY_DST
+  fi
+
+  echo "$dir_dst"
+}
+
 fs_parse_file_from_path()
 {
   local path="$1"
