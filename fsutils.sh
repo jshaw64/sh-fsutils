@@ -209,8 +209,7 @@ fs_get_files_for_filter()
     if [ "$file" = "$filter" ]; then
       break
     fi
-    file_no_dir=${file##*/}
-    files=( "${files[@]}" "$file_no_dir" )
+    files=( "${files[@]}" "$file" )
   done
 
   echo "${files[@]}"
