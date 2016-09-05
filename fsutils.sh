@@ -148,9 +148,11 @@ fs_zip_dir()
     return $E_ZIP_SRC
   fi
 
+  (
   cd "$dir_src"
   zip -qr "$file_dst" "."
   cp "$file_dst" "$file_out_path"
+  )
 
   if [ ! -e "$file_out_path" ]; then
     return $E_ZIP_DST
