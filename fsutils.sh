@@ -7,10 +7,12 @@ E_DIR_EXIST=51
 
 fs_is_valid_file()
 {
-  local file="$1"
+  local dir="$1"
+  local file="$2"
+  local path="${dir}/${file}"
 
-  if [ ! -e "$file" ]; then
-      return $E_FSRC
+  if [ ! -e "$path" ]; then
+      return $E_FILE_EXIST
   fi
 
   return 0
