@@ -201,6 +201,21 @@ fs_parse_path_no_file()
   echo "$path_no_file"
 }
 
+fs_get_abs_path()
+{
+  local rel_path="$1"
+  local abs_path=
+
+  case "$rel_path" in
+    ./* )
+      abs_path="${PWD}/${rel_path:2}"
+      ;;
+    * )
+      abs_path="$rel_path"
+  esac
+
+  echo "$abs_path"
+}
 
 fs_get_files_for_filter()
 {
