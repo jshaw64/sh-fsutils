@@ -141,18 +141,19 @@ fs_rm_dir_contents()
 
 fs_zip_dir()
 {
-  local dir_src="$1"
-  local dir_dst="$2"
-  local file_dst="$3"
+  local dir_src_root="$1"
+  local dir_src_name="$2"
+  local dir_dst="$3"
+  local file_dst="$4"
   local file_out_path="${dir_dst}/${file_dst}"
 
-  if [ ! -d "$dir_src" ]; then
+  if [ ! -d "$dir_src_root" ]; then
     return $E_ZIP_SRC
   fi
 
   (
-  cd "$dir_src"
-  zip -qr "$file_dst" "."
+  cd "$dir_src_root"
+  zip -qr "${file_dst}" "${dir_src_name}"
   cp "$file_dst" "$file_out_path"
   )
 
