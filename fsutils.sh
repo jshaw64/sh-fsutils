@@ -60,7 +60,7 @@ fs_copy_file()
     return $E_COPY_DST
   fi
 
-  echo "$path_dst"
+  return 0
 }
 
 fs_copy_dir()
@@ -78,7 +78,7 @@ fs_copy_dir()
     return $E_COPY_DST
   fi
 
-  echo "$dir_dst"
+  return 0
 }
 
 fs_rm_file()
