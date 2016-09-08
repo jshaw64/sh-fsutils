@@ -211,6 +211,9 @@ fs_get_abs_path()
     ./* )
       abs_path="${PWD}/${rel_path:2}"
       ;;
+    . )
+      abs_path="${PWD}/${rel_path:1}"
+      ;;
     * )
       abs_path="$rel_path"
   esac
