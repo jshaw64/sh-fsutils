@@ -153,7 +153,7 @@ fs_zip_dir()
 
   (
   cd "$dir_src_root"
-  zip -qr "${file_dst}" "${dir_src_name}"
+  zip -qry "${file_dst}" "${dir_src_name}"
   cp "$file_dst" "$file_out_path"
   )
 
