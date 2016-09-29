@@ -4,6 +4,7 @@ DEF_TMP_NAME="fs-tmp"
 
 E_FILE_EXIST=50
 E_DIR_EXIST=51
+E_LINK=52
 
 fs_is_valid_file()
 {
@@ -24,6 +25,28 @@ fs_is_valid_dir()
 
   if [ ! -d "$dir" ]; then
       exit $E_DIR
+  fi
+
+  return 0
+}
+
+fs_is_valid_link()
+{
+  local file_src_dir="$1"
+  local file_src_name="$2"
+  local file_src_path="${file_src_dir}/${file_src_name}"
+  local file_dst_dir="$3"
+  local file_dst_name="$4"
+
+  if [ ! -L "$file_src_path" ]; then
+    return $E_LINK
+  fi
+
+  local file_dst_path="${file_dst_dir}/${file_dst_name}"
+  local link_target="$(readlink "$file_src_path")"
+
+  if [ ! "$link_target" = "$file_dst_path" ]; then
+    return $E_LINK
   fi
 
   return 0
