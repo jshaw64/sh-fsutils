@@ -24,7 +24,7 @@ fs_is_valid_dir()
   local dir="$1"
 
   if [ ! -d "$dir" ]; then
-      exit $E_DIR
+      return $E_DIR
   fi
 
   return 0
