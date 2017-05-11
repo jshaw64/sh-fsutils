@@ -5,6 +5,7 @@ DEF_TMP_NAME="fs-tmp"
 E_FILE_EXIST=50
 E_DIR_EXIST=51
 E_LINK=52
+E_DIR=53
 
 fs_is_valid_file()
 {
