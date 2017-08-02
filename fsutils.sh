@@ -260,3 +260,11 @@ fs_get_files_for_filter()
   echo "${files[@]}"
 }
 
+fs_sanitize_path()
+{
+  local path="$1"
+
+  local escaped="$( echo "$path" | sed 's/ /\\ /g')"
+
+  echo "${escaped}"
+}
