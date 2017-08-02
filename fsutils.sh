@@ -195,7 +195,7 @@ fs_unzip()
   local path_src="${dir_src}/${file_src}"
   local dir_dst="$3"
 
-  unzip "$path_src" -d "$dir_dst" > /dev/null
+  unzip "$path_src" -d "$dir_dst"
 
   return $?
 }
